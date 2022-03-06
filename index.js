@@ -1,4 +1,4 @@
-const Discord = require ("discord.js")
+const Discord = require("discord.js")
 require("dotenv").config()
 
 const generateImage = require("./generateImage")
@@ -11,22 +11,22 @@ const client = new Discord.Client({
     ]
 })
 
-client.on("ready,", () => {
+client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`)
 })
 
 client.on("messageCreate", (message) => {
     if (message.content == "salut"){
-        message.reply("Salut!")
+        message.reply("Wesh bien ou quoi la zone!")
     }
 })
 
-const WelcomeChannelId = "949845477568958514"
+const welcomeChannelId = "949845477568958514"
 
 client.on("guildMemberAdd", async (member) => {
-    const Image = await generateImage(member)
-    member.guild.channels.cache.get(WelcomeChannelId).send({
-        content:`<@${member.id}> Bienvenue dans strike RP!`,
+    const img = await generateImage(member)
+    member.guild.channels.cache.get(welcomeChannelId).send({
+        content: `<@${member.id}> Bienvenue dans le serveur!`,
         files: [img]
     })
 })
